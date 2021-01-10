@@ -4,7 +4,7 @@ library(dplyr)
 library(ggplot2)
 
 ui <- fluidPage(
-  titlePanel("Chose the ye"),
+  titlePanel("Environmental Complaints Dot Plot with Shiny"),
   sidebarLayout(
     sidebarPanel(
       sliderInput(inputId = "year",
