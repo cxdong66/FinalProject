@@ -1,4 +1,4 @@
-name: "My Website"
+name: "FinalProject"
 output_dir: "docs"  # docs directory of master branch
 navbar:
   title: "Visualization of Environmental Complaints Information in Chicago"

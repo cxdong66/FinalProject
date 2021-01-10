@@ -1,0 +1,12 @@
+name: ShinyMapPlot
+title: ShinyMapPlot
+username:
+account: cxdong66
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3458496
+bundleId: 4078782
+url: https://cxdong66.shinyapps.io/ShinyMapPlot/
+when: 1610289988.57792
+asMultiple: FALSE
+asStatic: FALSE

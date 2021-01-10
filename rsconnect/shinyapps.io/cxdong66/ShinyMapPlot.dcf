@@ -1,0 +1,13 @@
+name: ShinyMapPlot
+title: ShinyMapPlot
+username:
+account: cxdong66
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3458478
+bundleId: 4078736
+url: https://cxdong66.shinyapps.io/ShinyMapPlot/
+when: 1610288693.77127
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .nojekyll|_site.yml|index.Rmd|Page1.Rmd|Page2.Rmd|Page3.1.Rmd|Page3.2.Rmd|README.md|data/CDPH_Environmental_Complaints.csv|figs/A2C.png|figs/gganim_0.gif|figs/gganim_4.gif|figs/R.png|docs
