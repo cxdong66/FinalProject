@@ -2,11 +2,14 @@
 title: "Environmental Complaints Dot Plot with Shiny"
 output:
   html_document:
-    runtime: shiny
     df_print: paged
 ---
-```{r, echo=FALSE}
-knitr::include_app("https://cxdong66.shinyapps.io/ShinyMapPlot/")
+
+```{r,echo=FALSE}
+knitr::include_app("https://yihui.shinyapps.io/miniUI/", 
+  height = "800px")
 ```
+
+
 
 
