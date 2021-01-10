@@ -1,5 +1,5 @@
 ---
-title: "My Website"
+title: "Visualization of Environmental Complaints Information in Chicago"
 output:
   html_document:
     df_print: paged
