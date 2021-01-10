@@ -6,7 +6,7 @@ output:
 ---
 
 ```{r,echo=FALSE}
-knitr::include_app("https://yihui.shinyapps.io/miniUI/", 
+knitr::include_app("https://cxdong66.shinyapps.io/ShinyMapPlot/", 
   height = "800px")
 ```
 
