@@ -1,0 +1,48 @@
+---
+title: "Page1"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Head
+
+## This is a sub-head
+
+**Show bold**  
+
+*Show italics*
+
+Make a link:
+
+[ESE5023](https://zhu-group.github.io/ese5023/index.html)
+
+Colored text:  
+
+<font size="2" color="green">Green text size 2</font>
+
+<font size="3" color="red">Red text size 3</font>
+
+<font size="4" color="blue">Blue text size 4</font>
+
+Show section break line:
+
+***
+
+List:
+
++ 1
+  - 1.1
+  - 1.2
++ 2
+
+Insert a figure:  
+<img src="figs/R.png" alt="drawing" width="400"/>
+
+Insert a table:  
+
+| Column1 | Column2 | Column3   | 
+|:-------------:|:-------------:|:----:|
+|1         |2           |3  |
+|4         |5           |6  |
+

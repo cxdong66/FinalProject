@@ -1,0 +1,27 @@
+name: "My Website"
+output_dir: "docs"  # docs directory of master branch
+navbar:
+  title: "xxx's website"
+  type: inverse
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Page1"
+      href: Page1.html
+    - text: "Page2"
+      href: Page2.html
+    - text: "Page3"
+      href: Page3.html      
+    - text: "Page4"
+      menu:
+        - text: "Page4.1"
+          href: Page4.1.html
+        - text: "Page4.2"
+          href: Page4.2.html
+        - text: "Page4.3"
+          href: Page4.3.html   
+output:
+  html_document:
+    theme: cerulean
+    highlight: pygments
+    

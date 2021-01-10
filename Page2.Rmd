@@ -1,0 +1,22 @@
+---
+title: "Page2"
+output:
+  html_document:
+    df_print: paged
+---
+
+# Show R script only
+
+```{r,eval=F}
+x <- runif(10,0,1)
+y <- runif(10,0,1)
+plot(x,y,type="p")
+```
+
+# Show R script and its results
+
+```{r}
+x <- runif(10,0,1)
+y <- runif(10,0,1)
+plot(x,y,type="p")
+```
