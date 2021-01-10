@@ -447,29 +447,23 @@ div.tocify {
   <a href="index.html">Home</a>
 </li>
 <li>
-  <a href="Page1.html">DATA</a>
+  <a href="Page1.html">Data</a>
 </li>
 <li>
   <a href="Page2.html">BarChartRace</a>
 </li>
-<li>
-  <a href="Page3.html">Page3</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Page4
+    ShinyMapPlot
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="Page4.1.html">Page4.1</a>
+      <a href="Page3.1.html">Script</a>
     </li>
     <li>
-      <a href="Page4.2.html">Page4.2</a>
-    </li>
-    <li>
-      <a href="Page4.3.html">Page4.3</a>
+      <a href="Page3.2.html">Output</a>
     </li>
   </ul>
 </li>
@@ -503,65 +497,43 @@ div.tocify {
 <p>Firstly, we need to load the libraries.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(tidyr)</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(dplyr)</span></code></pre></div>
-<pre><code>## Warning: package &#39;dplyr&#39; was built under R version 4.0.3</code></pre>
-<pre><code>## 
-## Attaching package: &#39;dplyr&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from &#39;package:base&#39;:
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <p>Then load the raw data and make it as tibble class:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>RawData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;I://FinalProject/DATA/CDPH_Environmental_Complaints.csv&quot;</span>,<span class="dt">header =</span> T)</span>
-<span id="cb6-2"><a href="#cb6-2"></a>RawData_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(RawData)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>RawData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;I://FinalProject/DATA/CDPH_Environmental_Complaints.csv&quot;</span>,<span class="dt">header =</span> T)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>RawData_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(RawData)</span></code></pre></div>
 <p>Look into the structure of the data:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">colnames</span>(RawData_tbl)</span></code></pre></div>
-<pre><code>##  [1] &quot;COMPLAINT.ID&quot;       &quot;COMPLAINT.TYPE&quot;     &quot;ADDRESS&quot;           
-##  [4] &quot;STREET.NUMBER.FROM&quot; &quot;STREET.NUMBER.TO&quot;   &quot;DIRECTION&quot;         
-##  [7] &quot;STREET.NAME&quot;        &quot;STREET.TYPE&quot;        &quot;INSPECTOR&quot;         
-## [10] &quot;COMPLAINT.DATE&quot;     &quot;COMPLAINT.DETAIL&quot;   &quot;INSPECTION.LOG&quot;    
-## [13] &quot;DATA.SOURCE&quot;        &quot;Modified.Date&quot;      &quot;LATITUDE&quot;          
-## [16] &quot;LONGITUDE&quot;          &quot;LOCATION&quot;</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">head</span>(RawData_tbl)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">colnames</span>(RawData_tbl)</span></code></pre></div>
+<pre><code>##  [1] &quot;COMPLAINT.ID&quot;       &quot;COMPLAINT.TYPE&quot;     &quot;ADDRESS&quot;            &quot;STREET.NUMBER.FROM&quot;
+##  [5] &quot;STREET.NUMBER.TO&quot;   &quot;DIRECTION&quot;          &quot;STREET.NAME&quot;        &quot;STREET.TYPE&quot;       
+##  [9] &quot;INSPECTOR&quot;          &quot;COMPLAINT.DATE&quot;     &quot;COMPLAINT.DETAIL&quot;   &quot;INSPECTION.LOG&quot;    
+## [13] &quot;DATA.SOURCE&quot;        &quot;Modified.Date&quot;      &quot;LATITUDE&quot;           &quot;LONGITUDE&quot;         
+## [17] &quot;LOCATION&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="kw">head</span>(RawData_tbl)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["COMPLAINT.ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["COMPLAINT.TYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ADDRESS"],"name":[3],"type":["chr"],"align":["left"]},{"label":["STREET.NUMBER.FROM"],"name":[4],"type":["int"],"align":["right"]},{"label":["STREET.NUMBER.TO"],"name":[5],"type":["int"],"align":["right"]},{"label":["DIRECTION"],"name":[6],"type":["chr"],"align":["left"]},{"label":["STREET.NAME"],"name":[7],"type":["chr"],"align":["left"]},{"label":["STREET.TYPE"],"name":[8],"type":["chr"],"align":["left"]},{"label":["INSPECTOR"],"name":[9],"type":["chr"],"align":["left"]},{"label":["COMPLAINT.DATE"],"name":[10],"type":["chr"],"align":["left"]},{"label":["COMPLAINT.DETAIL"],"name":[11],"type":["chr"],"align":["left"]},{"label":["INSPECTION.LOG"],"name":[12],"type":["chr"],"align":["left"]},{"label":["DATA.SOURCE"],"name":[13],"type":["chr"],"align":["left"]},{"label":["Modified.Date"],"name":[14],"type":["chr"],"align":["left"]},{"label":["LATITUDE"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["LONGITUDE"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["LOCATION"],"name":[17],"type":["chr"],"align":["left"]}],"data":[{"1":"DOECOMP2","2":"Noise Complaint","3":"1 S STATE ST, CHICAGO, IL","4":"1","5":"NA","6":"S","7":"STATE","8":"ST","9":"10","10":"08/23/1993","11":"STREET MUSIC HEAVY NOISE POLLUTION REFERRED TO REVENUE","12":"MORE INFORMATION MAY BE AVAILABLE IN THE CDPH ENVIRONMENTAL INSPECTIONS DATASET","13":"HISTORIC DEPT. OF ENVIRONMENT","14":"01/01/2012","15":"NA","16":"NA","17":""},{"1":"DOECOMP73","2":"Noise Complaint","3":"10 S WACKER DR, CHICAGO, IL","4":"10","5":"NA","6":"S","7":"WACKER","8":"DR","9":"25","10":"04/02/1993","11":"SAXOPHONE PLAYING ON MADISON.","12":"MORE INFORMATION MAY BE AVAILABLE IN THE CDPH ENVIRONMENTAL INSPECTIONS DATASET","13":"HISTORIC DEPT. OF ENVIRONMENT","14":"01/01/2012","15":"NA","16":"NA","17":""},{"1":"DOECOMP90","2":"Asbestos Work Order","3":"100 E OHIO ST, CHICAGO, IL","4":"100","5":"NA","6":"E","7":"OHIO","8":"ST","9":"13","10":"11/08/1994","11":"GREEN TRAVEL                        FINE DUST DROPING FROM CIELING POSSIBLE ACM PROBLEM.","12":"MORE INFORMATION MAY BE AVAILABLE IN THE CDPH ENVIRONMENTAL INSPECTIONS DATASET","13":"HISTORIC DEPT. OF ENVIRONMENT","14":"01/01/2012","15":"NA","16":"NA","17":""},{"1":"DOECOMP80","2":"Toxics Hazardous Materials Work Order","3":"10 S WACKER DR, CHICAGO, IL","4":"10","5":"NA","6":"S","7":"WACKER","8":"DR","9":"17","10":"01/27/1993","11":"TOXIC ODORS ON 37TH FLOOR AT ABOVE ADDRESS.","12":"MORE INFORMATION MAY BE AVAILABLE IN THE CDPH ENVIRONMENTAL INSPECTIONS DATASET","13":"HISTORIC DEPT. OF ENVIRONMENT","14":"01/01/2012","15":"NA","16":"NA","17":""},{"1":"DOECOMP236","2":"Illegal Dumping Work Order","3":"10000 S STONY ISLAND AVE, CHICAGO, IL","4":"10000","5":"NA","6":"S","7":"STONY ISLAND","8":"AVE","9":"10","10":"10/26/1995","11":"RESIDENTIAL AREA                    FLY DUMPING DEBRIS AND CONCRETE.","12":"MORE INFORMATION MAY BE AVAILABLE IN THE CDPH ENVIRONMENTAL INSPECTIONS DATASET","13":"HISTORIC DEPT. OF ENVIRONMENT","14":"01/01/2012","15":"NA","16":"NA","17":""},{"1":"DOECOMP279","2":"Air Pollution Work Order","3":"1000 N LAKE SHORE DR, CHICAGO, IL","4":"1000","5":"NA","6":"N","7":"LAKE SHORE","8":"DR","9":"75","10":"07/05/2001","11":"CARLISE CONDOS                      SANDBLASTING","12":"MORE INFORMATION MAY BE AVAILABLE IN THE CDPH ENVIRONMENTAL INSPECTIONS DATASET","13":"HISTORIC DEPT. OF ENVIRONMENT","14":"01/01/2012","15":"NA","16":"NA","17":""}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">tail</span>(RawData_tbl)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">tail</span>(RawData_tbl)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["COMPLAINT.ID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["COMPLAINT.TYPE"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ADDRESS"],"name":[3],"type":["chr"],"align":["left"]},{"label":["STREET.NUMBER.FROM"],"name":[4],"type":["int"],"align":["right"]},{"label":["STREET.NUMBER.TO"],"name":[5],"type":["int"],"align":["right"]},{"label":["DIRECTION"],"name":[6],"type":["chr"],"align":["left"]},{"label":["STREET.NAME"],"name":[7],"type":["chr"],"align":["left"]},{"label":["STREET.TYPE"],"name":[8],"type":["chr"],"align":["left"]},{"label":["INSPECTOR"],"name":[9],"type":["chr"],"align":["left"]},{"label":["COMPLAINT.DATE"],"name":[10],"type":["chr"],"align":["left"]},{"label":["COMPLAINT.DETAIL"],"name":[11],"type":["chr"],"align":["left"]},{"label":["INSPECTION.LOG"],"name":[12],"type":["chr"],"align":["left"]},{"label":["DATA.SOURCE"],"name":[13],"type":["chr"],"align":["left"]},{"label":["Modified.Date"],"name":[14],"type":["chr"],"align":["left"]},{"label":["LATITUDE"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["LONGITUDE"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["LOCATION"],"name":[17],"type":["chr"],"align":["left"]}],"data":[{"1":"7562","2":"ASBESTOS WORK ORDER","3":"2518 E 95TH PL","4":"2518","5":"NA","6":"E","7":"95TH","8":"PL","9":"11461","10":"09/12/2013","11":"CALLER STATES THAT WATER DEPT METER INSTALLERS TOLD HER THAT SHE HAS ASBESTOS THAT SHE MUST HAVE REMOVED BEFORE METER INSTALLERS CAN INSTALL WATER METER INDOORS.","12":"[INSPECTION LOG #: 7103 12-SEP-13 ] WENT TO THE SITE OF COMPLAINT. I CALLED THE OWNER FOR ACCESS TOTHE PROPERTY AND CONSULT HER CONCERNS, MRS COLE IS AN ELDERLY WOMAN AND IS A VOLUNTEER IN THE CITY'S DWM WATER SAVER PROGRAM. AS A SINGLE FAMILY HOME OWNER, SHE IS ELIGILBE FOR THE FREE WATER SAVER METER TO BE INSTALLED IN HER HOME. SHE WAS DIRECTED BY THE APPROVED CONTRACTOR THAT SHE HAD ACM MATERIALS ON HER PIPES AND SHE NEED TO HIRE AN INSPECTOR AND ABATEMENT COMPANY TO HAVE IT REMOVED PRIOR TO THE METER INSTALLATION. THE PIPES ARE LOCATED IN THE BASEMENT AND ARE IN VERY GOOD AND PROTECTED FROM DAMAGE. THERE IS APPROX 3 FEET OF PACM IN THE AREA THAT SHE WAS TOLD NEEDED TO BE ABATED. WE ARE WORKING TO ASSIST HER THROUGH AGING TO FIND A COMPANY TO HELP HER WITH THE ABATEMENT. NO VIOLATION WAS ISSUED. PROFESSIONAL METER COMPANY OF MOKENA IS THE AUTHORIZED CONTRACTOR ISSUING CHECK SHEETS TO CUSTOMERS WHO HAVE THE METERS INSTALLED","13":"DEPT. OF PUBLIC HEALTH","14":"09/13/2013","15":"41.72178","16":"-87.56278","17":"POINT (-87.56278488802816 41.72178031112484)"},{"1":"7366","2":"ILLEGAL DUMPING WORK ORDER","3":"5411 S HOYNE AVE","4":"5411","5":"NA","6":"S","7":"HOYNE","8":"AVE","9":"227404","10":"08/22/2013","11":"SOMEONE DUMPED 5-7 CONTAINERS UNKNOWN SUBSTANCE ALSO APPRX 50 TRUCKS TIRES IN ALLEY","12":"[INSPECTION LOG #: 6880 22-AUG-13 12:15:00] I RESPONDED TO A DUMPING COMPLAINT AT THE ABOVE LOCATION. UPON ARRIVAL, I OBSERVED 2 SEPARATE DUMPING LOCATIONS: 5413 S. HOYNE AND 5411 S. HOYNE.\\n\\n\\nMY INVESTIGATION REVELED THE FOLLOWING:\\n\\n\\n5413 S. HOYNE \\n\\nWASTE SEEN DUMPED INCLUDED 17 PLASTIC TOTES ALL OF WHICH APPEARED EMPTY, 1-20GALLON GREASE DRUM, AND ABOUT 15 PLASTIC 55-GALLON DRUMS THAT WERE SEEN CUT IN HALF.\\n\\n\\nI THEN HAD A CONVERSATION WITH MR. DAN WIDEMAN WHO INFORMED ME THAT HE WORKS FOR LENDER SECURED PROPERTY. HE TOLD ME THAT THE WASTE WAS DUMPED ABOUT A WEEK AGO AND IS WORKING WITH THE BANK (BRIDGEVIEW BANK) ON REMOVING IT. MR. WIDEMAN ALSO MENTIONED THAT HE WAS MAKING MINOR REPAIRS TO THE HOME BEFORE THE BANK TRIES TO SELL IT. \\n\\n\\nI THEN SPOKE WITH MR. WIDEMAN?S BOSS BOB SHAHMAN WHO ALSO WORKS FOR LSP. MR. SHAHMAN WAS AWARE OF THE WASTE IN THE REAR OF THE PROPERTY AND WAS MAKING ARRANGEMENTS ON REMOVE IT AND TO CONSTRUCT A FENCE AROUND THE BACK OF THE PROPERTY. WASTE REMOVAL SHOULD OCCUR SOMETIME NEXT WEEK. I WILL FOLLOW UP NEXT WEEK AND ASSESS THE CONDITIONS THEN. \\n\\n\\n5411 S. HOYNE\\n\\nIS A VACANT CITY LOT THAT HAD ABOUT 70 USED TIRES DUMPED ON IT AND WILL BE REFEREED TO DSS FOR PICKUP.","13":"DEPT. OF PUBLIC HEALTH","14":"08/22/2013","15":"41.79533","16":"-87.67663","17":"POINT (-87.67662870743565 41.795327511747246)"},{"1":"8783","2":"NOISE COMPLAINT","3":"600 W FULLERTON PKWY","4":"600","5":"NA","6":"W","7":"FULLERTON","8":"PKWY","9":"3308","10":"12/03/2013","11":"CALLER SAID PRSBYTERIAN CHURCH-HVAC UNIT ON ROOF CREATING NOSE NUISANCE- ROOFTOP","12":"[INSPECTION LOG #: 8626 03-DEC-13 15:30:00] UPON ARRIVING AT LINCOLN PARK PRESBYTERIAN CHURCH, ON A 311 HVAC-UNIT NOISE COMPLAINT, I OBSERVED THE UNIT TO BE MAKING VERY LITTLE NOISE. THE UNIT WAS MAKING A LOW HUMMING NOISE. I SPOKE TOCHURCH'S PASTOR, BETH BUCKINGHAM-BROWM, ABOUT THE COMPLAINT. I ISSUED NO CITATIONS  LEFT.","13":"DEPT. OF PUBLIC HEALTH","14":"12/08/2013","15":"41.92564","16":"-87.64405","17":"POINT (-87.64405081529848 41.92564011341377)"},{"1":"7081","2":"ILLEGAL DUMPING WORK ORDER","3":"5144 W STRONG ST","4":"5144","5":"NA","6":"W","7":"STRONG","8":"ST","9":"3308","10":"07/22/2013","11":"CONSTRUCTION/DEMOLITION DEBRIS AT ABOVE LOCATION.","12":"[INSPECTION LOG #: 6625 22-JUL-13 13:15:00] UPON ARRIVING AT 5144 W. STRONG ST., ON A 311 DUMPING COMPLAINT, I OBSERVED TWO PIECES OF WINDOW  A PIECE OF DRYWALL, NEATLY STORED NEAR THE TASH CARTS, AT TH ABOVVE ADDRESS. I OBSERVED NO OTHER ISSUES AT THE TIME OF MY INSPECTION. DSS USUALLY REMOVES THIS MATERIAL. I ISSUED NO CITATIONS  LEFT.","13":"DEPT. OF PUBLIC HEALTH","14":"07/23/2013","15":"41.97077","16":"-87.75689","17":"POINT (-87.75689355636803 41.970767218435526)"},{"1":"9705","2":"AIR POLLUTION WORK ORDER","3":"7300 W BRYN MAWR AVE","4":"7300","5":"NA","6":"W","7":"BRYN MAWR","8":"AVE","9":"29520","10":"03/05/2014","11":"SMOKE COMING FROM ROOF TOP CHIMNEY. CALLER FEELS THAT THIS SMOKE IS TOXIC AND BLACK.","12":"[INSPECTION LOG #: 9703 05-MAR-14 10:50:00] SINGLE FAMILY RESIDENCE. THERE IS ONE STACK ON THE ROOF DEDICATED TO THE FIREPLACE PRESUMABLE. NONE EMISSIONS WERE COMING FROM IT DURING INSPECTION.","13":"DEPT. OF PUBLIC HEALTH","14":"03/05/2014","15":"41.98280","16":"-87.80957","17":"POINT (-87.80957308977344 41.98280300662321)"},{"1":"6731","2":"NOISE COMPLAINT","3":"5916 W LAKE ST","4":"5916","5":"NA","6":"W","7":"LAKE","8":"ST","9":"10937","10":"06/11/2013","11":"FACILITY AIR CONDITIONING UNIT IS MAKING LOUD NOISE AND SHAKING THE NEIGHBORS HOME.","12":"[INSPECTION LOG #: 6303 12-JUN-13 14:41:00] MARS HILL BAPTIST CHURCH\\n\\nAFTER SPEAKING WITH THE COMPLAINANTS VIA TELELPHONE REGARDING MY FINDINGS A FOLLOW UP SITE VISIT WAS CONDUCTED. ACCORDING TO THE COMPLAINANTS, THE AIR CONDITIONING UNIT FOR THE CHURCH IS ALLOWED TO OPERATEALL DAY AND INTO THE NIGHT SOMTIMES AT 11PM-1AM.I MET WITH MS. TAYLOR, CHIEF OF STAFF FOR MARS HILL CHURCH, REGARDING THE COMPLAINT. MS. TAYLOR STATED THAT THE A/C UNIT IS TURNED OFF NIGHTLY AND IS NOT ON AN AUTOMATIC TIMER. I INFORMED MS. TAYLOR OF THE INFORMATION RELAYED TO MY BY THE COMPLAINANTS OF THEEXCESSIVE NOISE AND LATE NIGHT A/C USE. MS. TAYLOR STATED THAT SHE WOULD MAKE SURE THAT THE UNIT IS OFF WHEN ITS NOT IN USE. I INFORMED MS. TAYLOR OF THE NOISE ORDINANCE FOR MECHANICAL EQUIPMENT AND POSSIBLE ENFORCEMENT ACTION IF NEEDED. I WILL SHEDULE A SITE VISIT WHEN THE A/C UNIT IS IN USE TO OBTIAN NOISE READINGS.","13":"DEPT. OF PUBLIC HEALTH","14":"06/12/2013","15":"41.88807","16":"-87.77279","17":"POINT (-87.77279227891802 41.888066973008854)"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>Get the categories of the complaints.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>CATOfCPs_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">unique</span>(RawData_tbl<span class="op">$</span>COMPLAINT.TYPE)</span></code></pre></div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">sort</span>(CATOfCPs_<span class="dv">0</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;Abandoned Site&quot;                           
-##  [2] &quot;ABANDONED SITE&quot;                           
-##  [3] &quot;Air Pollution Work Order&quot;                 
-##  [4] &quot;AIR POLLUTION WORK ORDER&quot;                 
-##  [5] &quot;Asbestos Work Order&quot;                      
-##  [6] &quot;ASBESTOS WORK ORDER&quot;                      
-##  [7] &quot;CONSTRUCTION AND DEMOLITION&quot;              
-##  [8] &quot;Illegal Dumping Work Order&quot;               
-##  [9] &quot;ILLEGAL DUMPING WORK ORDER&quot;               
-## [10] &quot;Noise Complaint&quot;                          
-## [11] &quot;NOISE COMPLAINT&quot;                          
-## [12] &quot;Other&quot;                                    
-## [13] &quot;Permits Issued by DOE Work Order&quot;         
-## [14] &quot;PERMITS ISSUED BY DOE WORK ORDER&quot;         
-## [15] &quot;Recycling Work Order&quot;                     
-## [16] &quot;RECYCLING WORK ORDER&quot;                     
-## [17] &quot;Service Stations/Storage Tanks Work Order&quot;
-## [18] &quot;SERVICE STATIONS/STORAGE TANKS WORK ORDER&quot;
-## [19] &quot;Toxics Hazardous Materials Work Order&quot;    
-## [20] &quot;TOXICS HAZARDOUS MATERIALS WORK ORDER&quot;    
-## [21] &quot;Vehicle Idling Work Order&quot;                
-## [22] &quot;VEHICLE IDLING WORK ORDER&quot;                
-## [23] &quot;Water Pollution&quot;                          
-## [24] &quot;WATER POLLUTION&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>CATOfCPs_<span class="dv">0</span> &lt;-<span class="st"> </span><span class="kw">unique</span>(RawData_tbl<span class="op">$</span>COMPLAINT.TYPE)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">sort</span>(CATOfCPs_<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;Abandoned Site&quot;                            &quot;ABANDONED SITE&quot;                           
+##  [3] &quot;Air Pollution Work Order&quot;                  &quot;AIR POLLUTION WORK ORDER&quot;                 
+##  [5] &quot;Asbestos Work Order&quot;                       &quot;ASBESTOS WORK ORDER&quot;                      
+##  [7] &quot;CONSTRUCTION AND DEMOLITION&quot;               &quot;Illegal Dumping Work Order&quot;               
+##  [9] &quot;ILLEGAL DUMPING WORK ORDER&quot;                &quot;Noise Complaint&quot;                          
+## [11] &quot;NOISE COMPLAINT&quot;                           &quot;Other&quot;                                    
+## [13] &quot;Permits Issued by DOE Work Order&quot;          &quot;PERMITS ISSUED BY DOE WORK ORDER&quot;         
+## [15] &quot;Recycling Work Order&quot;                      &quot;RECYCLING WORK ORDER&quot;                     
+## [17] &quot;Service Stations/Storage Tanks Work Order&quot; &quot;SERVICE STATIONS/STORAGE TANKS WORK ORDER&quot;
+## [19] &quot;Toxics Hazardous Materials Work Order&quot;     &quot;TOXICS HAZARDOUS MATERIALS WORK ORDER&quot;    
+## [21] &quot;Vehicle Idling Work Order&quot;                 &quot;VEHICLE IDLING WORK ORDER&quot;                
+## [23] &quot;Water Pollution&quot;                           &quot;WATER POLLUTION&quot;</code></pre>
 <p>After the sort, we find out every category has a capitalized name and a lower case name instead of the “Other”.</p>
 <hr />
 </div>
@@ -587,33 +559,27 @@ div.tocify {
 <div id="correct-the-categories-of-cps.type" class="section level2">
 <h2>Correct the categories of CPs.TYPE</h2>
 <p>Rename all categories to upper case.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>RawData_tbl<span class="op">$</span>COMPLAINT.TYPE &lt;-<span class="st"> </span><span class="kw">toupper</span>(RawData_tbl<span class="op">$</span>COMPLAINT.TYPE)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>CATOfCPs_<span class="dv">1</span>&lt;-<span class="kw">unique</span>(RawData_tbl<span class="op">$</span>COMPLAINT.TYPE)</span>
-<span id="cb14-3"><a href="#cb14-3"></a><span class="kw">sort</span>(CATOfCPs_<span class="dv">1</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;ABANDONED SITE&quot;                           
-##  [2] &quot;AIR POLLUTION WORK ORDER&quot;                 
-##  [3] &quot;ASBESTOS WORK ORDER&quot;                      
-##  [4] &quot;CONSTRUCTION AND DEMOLITION&quot;              
-##  [5] &quot;ILLEGAL DUMPING WORK ORDER&quot;               
-##  [6] &quot;NOISE COMPLAINT&quot;                          
-##  [7] &quot;OTHER&quot;                                    
-##  [8] &quot;PERMITS ISSUED BY DOE WORK ORDER&quot;         
-##  [9] &quot;RECYCLING WORK ORDER&quot;                     
-## [10] &quot;SERVICE STATIONS/STORAGE TANKS WORK ORDER&quot;
-## [11] &quot;TOXICS HAZARDOUS MATERIALS WORK ORDER&quot;    
-## [12] &quot;VEHICLE IDLING WORK ORDER&quot;                
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>RawData_tbl<span class="op">$</span>COMPLAINT.TYPE &lt;-<span class="st"> </span><span class="kw">toupper</span>(RawData_tbl<span class="op">$</span>COMPLAINT.TYPE)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>CATOfCPs_<span class="dv">1</span>&lt;-<span class="kw">unique</span>(RawData_tbl<span class="op">$</span>COMPLAINT.TYPE)</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="kw">sort</span>(CATOfCPs_<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>##  [1] &quot;ABANDONED SITE&quot;                            &quot;AIR POLLUTION WORK ORDER&quot;                 
+##  [3] &quot;ASBESTOS WORK ORDER&quot;                       &quot;CONSTRUCTION AND DEMOLITION&quot;              
+##  [5] &quot;ILLEGAL DUMPING WORK ORDER&quot;                &quot;NOISE COMPLAINT&quot;                          
+##  [7] &quot;OTHER&quot;                                     &quot;PERMITS ISSUED BY DOE WORK ORDER&quot;         
+##  [9] &quot;RECYCLING WORK ORDER&quot;                      &quot;SERVICE STATIONS/STORAGE TANKS WORK ORDER&quot;
+## [11] &quot;TOXICS HAZARDOUS MATERIALS WORK ORDER&quot;     &quot;VEHICLE IDLING WORK ORDER&quot;                
 ## [13] &quot;WATER POLLUTION&quot;</code></pre>
 <hr />
 </div>
 <div id="change-the-class-of-complaint.date-to-date" class="section level2">
 <h2>Change the class of “COMPLAINT.DATE” to date</h2>
 <p>Check the date of the data</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">typeof</span>(RawData_tbl<span class="op">$</span>COMPLAINT.DATE)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">typeof</span>(RawData_tbl<span class="op">$</span>COMPLAINT.DATE)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>Change the character type to Date type</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>RawData_tbl<span class="op">$</span>COMPLAINT.DATE &lt;-<span class="st"> </span><span class="kw">as.Date</span>(RawData_tbl<span class="op">$</span>COMPLAINT.DATE,<span class="st">&quot;%m/%d/%Y&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>RawData_tbl<span class="op">$</span>COMPLAINT.DATE &lt;-<span class="st"> </span><span class="kw">as.Date</span>(RawData_tbl<span class="op">$</span>COMPLAINT.DATE,<span class="st">&quot;%m/%d/%Y&quot;</span>)</span></code></pre></div>
 <p>Check the date range</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="kw">range</span>(RawData_tbl<span class="op">$</span>COMPLAINT.DATE,<span class="dt">na.rm =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">range</span>(RawData_tbl<span class="op">$</span>COMPLAINT.DATE,<span class="dt">na.rm =</span> T)</span></code></pre></div>
 <pre><code>## [1] &quot;1993-01-04&quot; &quot;2020-06-30&quot;</code></pre>
 <hr />
 </div>
@@ -621,48 +587,46 @@ div.tocify {
 <h2>Address to Coordinate</h2>
 <p>Due to recording or no reason, the coordinates of many complaints in raw data are missing, so we need a path to get the coordinates by addresses. Here I use the “geocode” function in package “ggmap”</p>
 <p>Add the libraries</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">library</span>(ggmap)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">library</span>(ggmap)</span></code></pre></div>
 <pre><code>## Warning: package &#39;ggmap&#39; was built under R version 4.0.3</code></pre>
-<pre><code>## Loading required package: ggplot2</code></pre>
-<pre><code>## Warning: package &#39;ggplot2&#39; was built under R version 4.0.3</code></pre>
 <pre><code>## Google&#39;s Terms of Service: https://cloud.google.com/maps-platform/terms/.</code></pre>
 <pre><code>## Please cite ggmap if you use it! See citation(&quot;ggmap&quot;) for details.</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">library</span>(httr)<span class="co">#For proxy setting</span></span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="kw">library</span>(httr)<span class="co">#For proxy setting</span></span></code></pre></div>
 <pre><code>## Warning: package &#39;httr&#39; was built under R version 4.0.3</code></pre>
 <p>Data selection</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>A2C_DATA_tbl &lt;-<span class="st"> </span>RawData_tbl</span>
-<span id="cb29-2"><a href="#cb29-2"></a>A2C_DATA_tbl_<span class="dv">1</span> &lt;-<span class="st"> </span>A2C_DATA_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="st">  </span><span class="kw">select</span>(COMPLAINT.ID,COMPLAINT.TYPE,ADDRESS,COMPLAINT.DATE,COMPLAINT.DETAIL,LATITUDE,LONGITUDE,LOCATION)</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>A2C_DATA_tbl &lt;-<span class="st"> </span>RawData_tbl</span>
+<span id="cb23-2"><a href="#cb23-2"></a>A2C_DATA_tbl_<span class="dv">1</span> &lt;-<span class="st"> </span>A2C_DATA_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="st">  </span><span class="kw">select</span>(COMPLAINT.ID,COMPLAINT.TYPE,ADDRESS,COMPLAINT.DATE,COMPLAINT.DETAIL,LATITUDE,LONGITUDE,LOCATION)</span></code></pre></div>
 <p>Since the Google service is blocked, which is needed using the “geocode”, so we need to set the proxy in RStudio first.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a><span class="kw">set_config</span>(</span>
-<span id="cb30-2"><a href="#cb30-2"></a>  <span class="kw">use_proxy</span>(<span class="dt">url=</span><span class="st">&quot;127.0.0.1&quot;</span>, </span>
-<span id="cb30-3"><a href="#cb30-3"></a>            <span class="dt">port=</span><span class="dv">1080</span>, <span class="dt">username =</span> <span class="ot">NULL</span>,<span class="dt">password =</span> <span class="ot">NULL</span>,)</span>
-<span id="cb30-4"><a href="#cb30-4"></a>  <span class="co">#I&#39;m using Shadowsocks as my VPN client, to anyone confused about how to set the value of each arguments, you need to find the information in your VPN client.</span></span>
-<span id="cb30-5"><a href="#cb30-5"></a>  </span>
-<span id="cb30-6"><a href="#cb30-6"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="kw">set_config</span>(</span>
+<span id="cb24-2"><a href="#cb24-2"></a>  <span class="kw">use_proxy</span>(<span class="dt">url=</span><span class="st">&quot;127.0.0.1&quot;</span>, </span>
+<span id="cb24-3"><a href="#cb24-3"></a>            <span class="dt">port=</span><span class="dv">1080</span>, <span class="dt">username =</span> <span class="ot">NULL</span>,<span class="dt">password =</span> <span class="ot">NULL</span>,)</span>
+<span id="cb24-4"><a href="#cb24-4"></a>  <span class="co">#I&#39;m using Shadowsocks as my VPN client, to anyone confused about how to set the value of each arguments, you need to find the information in your VPN client.</span></span>
+<span id="cb24-5"><a href="#cb24-5"></a>  </span>
+<span id="cb24-6"><a href="#cb24-6"></a>)</span></code></pre></div>
 <p>Then we need to register our Google Map API service by the “key”</p>
 <blockquote>
 <p>Click <a href="https://github.com/dkahle/ggmap/">here</a> to see how to get the Google API and the key.(An international credit card is needed)</p>
 </blockquote>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>ggmap<span class="op">::</span><span class="kw">register_google</span>(<span class="dt">key =</span> <span class="st">&quot;xxx&quot;</span>)</span>
-<span id="cb31-2"><a href="#cb31-2"></a><span class="co">#xxx means your key </span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>ggmap<span class="op">::</span><span class="kw">register_google</span>(<span class="dt">key =</span> <span class="st">&quot;xxx&quot;</span>)</span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="co">#xxx means your key </span></span></code></pre></div>
 <p><font size="2.5" color="red">I highly recommend you that <strong>do not save your key in your script</strong>, otherwise you may get a large credit card bill if someone else use your key!!!</font></p>
 <p>Then we do the translation one by one with the NA check</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(A2C_DATA_tbl_<span class="dv">1</span>)){</span>
-<span id="cb32-2"><a href="#cb32-2"></a>  <span class="kw">print</span>(i)</span>
-<span id="cb32-3"><a href="#cb32-3"></a>  <span class="cf">if</span>(<span class="kw">is.na</span>(A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>LATITUDE[i])){</span>
-<span id="cb32-4"><a href="#cb32-4"></a>    result &lt;-<span class="st"> </span><span class="kw">geocode</span>(A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>ADDRESS[i], <span class="dt">output =</span> <span class="st">&quot;latlona&quot;</span>, <span class="dt">source =</span> <span class="st">&quot;google&quot;</span>)</span>
-<span id="cb32-5"><a href="#cb32-5"></a>    A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>LONGITUDE[i] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(result[<span class="dv">1</span>])</span>
-<span id="cb32-6"><a href="#cb32-6"></a>    A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>LATITUDE[i] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(result[<span class="dv">2</span>])</span>
-<span id="cb32-7"><a href="#cb32-7"></a>    <span class="co">#Check if the raw data already have the coordinates, if not:assgin it by result, else: keep unchanged.</span></span>
-<span id="cb32-8"><a href="#cb32-8"></a>    <span class="co">#A2C_DATA_tbl_1$geoAddress[i] &lt;- as.character(result[3])</span></span>
-<span id="cb32-9"><a href="#cb32-9"></a>  }<span class="cf">else</span>{</span>
-<span id="cb32-10"><a href="#cb32-10"></a>    <span class="cf">next</span></span>
-<span id="cb32-11"><a href="#cb32-11"></a>  }</span>
-<span id="cb32-12"><a href="#cb32-12"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">nrow</span>(A2C_DATA_tbl_<span class="dv">1</span>)){</span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="cf">if</span>(<span class="kw">is.na</span>(A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>LATITUDE[i])){</span>
+<span id="cb26-4"><a href="#cb26-4"></a>    result &lt;-<span class="st"> </span><span class="kw">geocode</span>(A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>ADDRESS[i], <span class="dt">output =</span> <span class="st">&quot;latlona&quot;</span>, <span class="dt">source =</span> <span class="st">&quot;google&quot;</span>)</span>
+<span id="cb26-5"><a href="#cb26-5"></a>    A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>LONGITUDE[i] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(result[<span class="dv">1</span>])</span>
+<span id="cb26-6"><a href="#cb26-6"></a>    A2C_DATA_tbl_<span class="dv">1</span><span class="op">$</span>LATITUDE[i] &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(result[<span class="dv">2</span>])</span>
+<span id="cb26-7"><a href="#cb26-7"></a>    <span class="co">#Check if the raw data already have the coordinates, if not:assgin it by result, else: keep unchanged.</span></span>
+<span id="cb26-8"><a href="#cb26-8"></a>    <span class="co">#A2C_DATA_tbl_1$geoAddress[i] &lt;- as.character(result[3])</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a>  }<span class="cf">else</span>{</span>
+<span id="cb26-10"><a href="#cb26-10"></a>    <span class="cf">next</span></span>
+<span id="cb26-11"><a href="#cb26-11"></a>  }</span>
+<span id="cb26-12"><a href="#cb26-12"></a>}</span></code></pre></div>
 <p>Here is how it looks like when running the script(49890 in total) <img src="figs/A2C.png" alt="drawing"/></p>
 <p>Save it as a csv file named <a href="">“A2C_DATA_tbl_1.csv”</a></p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">write.csv</span>(A2C_DATA_tbl_<span class="dv">1</span>, <span class="st">&quot;A2C_DATA_tbl_1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">write.csv</span>(A2C_DATA_tbl_<span class="dv">1</span>, <span class="st">&quot;A2C_DATA_tbl_1.csv&quot;</span>)</span></code></pre></div>
 <p><strong>Show bold</strong></p>
 <p><em>Show italics</em></p>
 <p>Make a link:</p>
