@@ -12,7 +12,7 @@ library(dplyr)
 library(ggplot2)
 
 ui <- fluidPage(
-  titlePanel("Environmental Complaints Dot Plot with Shiny"),
+#  titlePanel("Environmental Complaints Dot Plot with Shiny"),
   sidebarLayout(
     sidebarPanel(
       sliderInput(inputId = "year",
@@ -71,7 +71,8 @@ server <- function(input, output) {
 }
 
 
-shinyApp(ui = ui, server = server)
+shinyApp(ui = ui, server = server,
+           options = list(height = 500))
 ```
 
 

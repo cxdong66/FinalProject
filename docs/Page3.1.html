@@ -11,7 +11,7 @@
 
 
 
-<title>Page4.1</title>
+<title>Script of Shiny app</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,6 +36,99 @@
     </style>
 
 
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
 
 <style type="text/css">
@@ -304,13 +397,78 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Page4.1</h1>
+<h1 class="title toc-ignore">Script of Shiny app</h1>
 
 </div>
 
 
-<p><strong>Computing and Programming for Environmental Research (ESE5023)</strong><br />
-<a href="https://zhu-group.github.io/ese5023" class="uri">https://zhu-group.github.io/ese5023</a></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(shiny)</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a>ui &lt;-<span class="st"> </span><span class="kw">fluidPage</span>(</span>
+<span id="cb1-7"><a href="#cb1-7"></a>  <span class="kw">titlePanel</span>(<span class="st">&quot;Environmental Complaints Dot Plot with Shiny&quot;</span>),</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  <span class="kw">sidebarLayout</span>(</span>
+<span id="cb1-9"><a href="#cb1-9"></a>    <span class="kw">sidebarPanel</span>(</span>
+<span id="cb1-10"><a href="#cb1-10"></a>      <span class="kw">sliderInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;year&quot;</span>,</span>
+<span id="cb1-11"><a href="#cb1-11"></a>                  <span class="dt">label =</span> <span class="st">&quot;Choose the Year&quot;</span>,</span>
+<span id="cb1-12"><a href="#cb1-12"></a>                  <span class="dt">value =</span> <span class="dv">2019</span>, <span class="dt">min =</span> <span class="dv">1993</span>, <span class="dt">max =</span> <span class="dv">2020</span>),</span>
+<span id="cb1-13"><a href="#cb1-13"></a>      <span class="kw">checkboxGroupInput</span>(<span class="dt">inputId =</span> <span class="st">&quot;type&quot;</span>,</span>
+<span id="cb1-14"><a href="#cb1-14"></a>                         <span class="dt">label =</span> <span class="st">&quot;Seclect the types of Complaints&quot;</span>,</span>
+<span id="cb1-15"><a href="#cb1-15"></a>                         <span class="dt">choiceNames =</span> <span class="kw">c</span>(<span class="st">&quot;ABANDONED SITE&quot;</span>,<span class="st">&quot;AIR POLLUTION&quot;</span>,<span class="st">&quot;ASBESTOS&quot;</span> ,</span>
+<span id="cb1-16"><a href="#cb1-16"></a>                                         <span class="st">&quot;CONSTRUCTION AND DEMOLITION&quot;</span>, <span class="st">&quot;ILLEGAL DUMPING&quot;</span>,</span>
+<span id="cb1-17"><a href="#cb1-17"></a>                                         <span class="st">&quot;NOISE COMPLAINT&quot;</span>,<span class="st">&quot;PERMITS ISSUED BY DOE&quot;</span>,</span>
+<span id="cb1-18"><a href="#cb1-18"></a>                                         <span class="st">&quot;RECYCLING&quot;</span>, <span class="st">&quot;SERVICE STATIONS/STORAGE TANKS&quot;</span>,</span>
+<span id="cb1-19"><a href="#cb1-19"></a>                                         <span class="st">&quot;TOXICS HAZARDOUS MATERIALS&quot;</span>, <span class="st">&quot;VEHICLE IDLING&quot;</span>,</span>
+<span id="cb1-20"><a href="#cb1-20"></a>                                         <span class="st">&quot;WATER POLLUTION&quot;</span>,<span class="st">&quot;OTHER&quot;</span>),</span>
+<span id="cb1-21"><a href="#cb1-21"></a>                         <span class="dt">choiceValues =</span> <span class="kw">c</span>(<span class="st">&quot;ABANDONED SITE&quot;</span>,<span class="st">&quot;AIR POLLUTION WORK ORDER&quot;</span>,<span class="st">&quot;ASBESTOS WORK ORDER&quot;</span> ,</span>
+<span id="cb1-22"><a href="#cb1-22"></a>                                          <span class="st">&quot;CONSTRUCTION AND DEMOLITION&quot;</span>, <span class="st">&quot;ILLEGAL DUMPING WORK ORDER&quot;</span>,</span>
+<span id="cb1-23"><a href="#cb1-23"></a>                                          <span class="st">&quot;NOISE COMPLAINT&quot;</span>,<span class="st">&quot;PERMITS ISSUED BY DOE WORK ORDER&quot;</span>,</span>
+<span id="cb1-24"><a href="#cb1-24"></a>                                          <span class="st">&quot;RECYCLING WORK ORDER&quot;</span>, <span class="st">&quot;SERVICE STATIONS/STORAGE TANKS WORK ORDER&quot;</span>,</span>
+<span id="cb1-25"><a href="#cb1-25"></a>                                          <span class="st">&quot;TOXICS HAZARDOUS MATERIALS WORK ORDER&quot;</span>, <span class="st">&quot;VEHICLE IDLING WORK ORDER&quot;</span>,</span>
+<span id="cb1-26"><a href="#cb1-26"></a>                                          <span class="st">&quot;WATER POLLUTION&quot;</span>,<span class="st">&quot;OTHER&quot;</span>)</span>
+<span id="cb1-27"><a href="#cb1-27"></a>                         </span>
+<span id="cb1-28"><a href="#cb1-28"></a>      ),</span>
+<span id="cb1-29"><a href="#cb1-29"></a>      <span class="kw">actionButton</span>(<span class="dt">inputId =</span> <span class="st">&quot;clicks&quot;</span>,</span>
+<span id="cb1-30"><a href="#cb1-30"></a>                   <span class="dt">label =</span> <span class="st">&quot;Plot&quot;</span>)</span>
+<span id="cb1-31"><a href="#cb1-31"></a>    ),</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    <span class="kw">mainPanel</span>(</span>
+<span id="cb1-33"><a href="#cb1-33"></a>      <span class="kw">plotOutput</span>(<span class="st">&quot;MapPlot&quot;</span>)</span>
+<span id="cb1-34"><a href="#cb1-34"></a>    )</span>
+<span id="cb1-35"><a href="#cb1-35"></a>  )</span>
+<span id="cb1-36"><a href="#cb1-36"></a>)</span>
+<span id="cb1-37"><a href="#cb1-37"></a></span>
+<span id="cb1-38"><a href="#cb1-38"></a></span>
+<span id="cb1-39"><a href="#cb1-39"></a>server &lt;-<span class="st"> </span><span class="cf">function</span>(input, output) {</span>
+<span id="cb1-40"><a href="#cb1-40"></a>  <span class="kw">load</span>(<span class="dt">file =</span> <span class="st">&quot;data/CHI_map_bw.RData&quot;</span>)</span>
+<span id="cb1-41"><a href="#cb1-41"></a>  PlotData &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/A2C_DATA_tbl_1.csv&quot;</span>,<span class="dt">header =</span> T)</span>
+<span id="cb1-42"><a href="#cb1-42"></a>  PlotData_tbl &lt;-<span class="st"> </span><span class="kw">as_tibble</span>(PlotData)</span>
+<span id="cb1-43"><a href="#cb1-43"></a>  PlotData_tbl<span class="op">$</span>COMPLAINT.DATE &lt;-<span class="st"> </span><span class="kw">as.Date</span>(PlotData_tbl<span class="op">$</span>COMPLAINT.DATE)</span>
+<span id="cb1-44"><a href="#cb1-44"></a>  PlotData_tbl_<span class="dv">1</span> &lt;-<span class="st"> </span>PlotData_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="st">    </span><span class="kw">mutate</span>(<span class="dt">YEAR =</span> <span class="kw">as.integer</span>(<span class="kw">format</span>(COMPLAINT.DATE,<span class="st">&quot;%Y&quot;</span>)))</span>
+<span id="cb1-46"><a href="#cb1-46"></a>  </span>
+<span id="cb1-47"><a href="#cb1-47"></a>  PlotData_tbl_<span class="dv">2</span> &lt;-<span class="st">  </span><span class="kw">eventReactive</span>(input<span class="op">$</span>clicks,{</span>
+<span id="cb1-48"><a href="#cb1-48"></a>      PlotData_tbl_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-49"><a href="#cb1-49"></a><span class="st">      </span><span class="kw">filter</span>(YEAR <span class="op">==</span><span class="st"> </span>input<span class="op">$</span>year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb1-50"><a href="#cb1-50"></a><span class="st">      </span><span class="kw">filter</span>(COMPLAINT.TYPE <span class="op">%in%</span><span class="st"> </span>input<span class="op">$</span>type)</span>
+<span id="cb1-51"><a href="#cb1-51"></a>  })</span>
+<span id="cb1-52"><a href="#cb1-52"></a>  </span>
+<span id="cb1-53"><a href="#cb1-53"></a>  output<span class="op">$</span>MapPlot &lt;-<span class="st"> </span><span class="kw">renderPlot</span>({</span>
+<span id="cb1-54"><a href="#cb1-54"></a>    CHI_map_bw <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> LONGITUDE, <span class="dt">y =</span> LATITUDE,  <span class="dt">colour =</span> COMPLAINT.TYPE), </span>
+<span id="cb1-55"><a href="#cb1-55"></a>                            <span class="dt">data =</span> <span class="kw">PlotData_tbl_2</span>(), <span class="dt">size =</span> <span class="dv">2</span>,<span class="dt">alpha=</span><span class="fl">0.4</span>) <span class="op">+</span></span>
+<span id="cb1-56"><a href="#cb1-56"></a><span class="st">      </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">&quot;bottom&quot;</span>,</span>
+<span id="cb1-57"><a href="#cb1-57"></a>            <span class="dt">plot.title=</span><span class="kw">element_text</span>(<span class="dt">size=</span><span class="dv">20</span>, <span class="dt">hjust=</span><span class="fl">0.5</span>))<span class="op">+</span></span>
+<span id="cb1-58"><a href="#cb1-58"></a><span class="st">      </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="kw">paste</span>(<span class="st">&quot;The Envrionmental Complaints in Chicago in &quot;</span>,input<span class="op">$</span>year))</span>
+<span id="cb1-59"><a href="#cb1-59"></a>      </span>
+<span id="cb1-60"><a href="#cb1-60"></a>    })</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a>  </span>
+<span id="cb1-63"><a href="#cb1-63"></a>}</span>
+<span id="cb1-64"><a href="#cb1-64"></a></span>
+<span id="cb1-65"><a href="#cb1-65"></a></span>
+<span id="cb1-66"><a href="#cb1-66"></a><span class="kw">shinyApp</span>(<span class="dt">ui =</span> ui, <span class="dt">server =</span> server,</span>
+<span id="cb1-67"><a href="#cb1-67"></a>           <span class="dt">options =</span> <span class="kw">list</span>(<span class="dt">height =</span> <span class="dv">500</span>))</span></code></pre></div>
 
 
 

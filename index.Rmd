@@ -4,6 +4,9 @@ output:
   html_document:
     df_print: paged
 ---
-
+<img src="figs/CHI.jpg" alt="drawing" height="300"/>  
 Welcome to my website!  
-I am a student at SUSTech, my research is about xxx.
+This website is the output of final project for class ESE5023 in SUSTech.  
+My name is 曹旭东，and my ID is 12032739.  
+Basically, you can realize all the functions by my introduction step by step.   
+Contact me if you have any question via email: 12032739@mail.sustech.edu.cn   
